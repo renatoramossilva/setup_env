@@ -2,3 +2,6 @@
   tasks:
     - debug:
         msg: Starting installing the tools...
+
+- name: apt update/upgrade
+  import_playbook: playbooks/unix/apt.yaml
