@@ -30,5 +30,6 @@
           - gem
           - docker.io
           - docker-compose
+          - snapd
         state: latest
         update_cache: true
