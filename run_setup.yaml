@@ -5,3 +5,7 @@
 
 - name: apt update/upgrade
   import_playbook: playbooks/unix/apt.yaml
+
+- name: Install VSCode
+  import_playbook: playbooks/unix/vscode.yaml
+

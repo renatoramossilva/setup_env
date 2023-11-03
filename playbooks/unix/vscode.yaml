@@ -1,0 +1,45 @@
+---
+- name: Install VSCode / extensions
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Install code using snapd
+      shell: snap install code --classic
+    
+    - name: Install Visual Studio Code
+      apt:
+        name: code
+        state: present
+      become: yes
+
+    - name: Install VSCode extensionse
+      shell: |
+        code --install-extension eamodio.gitlens \
+          --install-extension ms-python.python \
+          --install-extension oderwat.indent-rainbow \
+          --install-extension usernamehw.indent-rainbow \
+          --install-extension bmewburn.vscode-intelephense-client \
+          --install-extension ms-toolsai.jupyter \
+          --install-extension coenraads.bracket-pair-colorizer-2 \
+          --install-extension oderwat.indent-rainbow \
+          --install-extension dbaeumer.vscode-eslint \
+          --install-extension ms-azuretools.vscode-docker \
+          --install-extension vscodevim.vim \
+          --install-extension streetsidesoftware.code-spell-checker \
+          --install-extension street-side-software.code-spell-checker \
+          --install-extension adammaras.overtype \
+          --install-extension timonwong.shellcheck \
+          --install-extension techer.open-in-browser
+
+- name: Check extensions installed
+  hosts: localhost
+  tasks:
+    - name: List installed extensionss
+      shell: code --list-extensions
+      register: installed_extensions
+
+    - name: Show installed extensions
+      debug:
+        var: installed_extensions.stdout_lines
+
