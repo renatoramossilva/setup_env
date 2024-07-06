@@ -9,3 +9,5 @@
 - name: Install git
   import_playbook: playbooks/unix/git.yaml
 
+- name: Install pip
+  import_playbook: playbooks/unix/pip.yaml

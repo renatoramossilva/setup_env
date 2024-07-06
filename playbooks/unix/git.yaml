@@ -12,3 +12,10 @@
         name: git
         state: present
 
+    - name: Get git version
+      command: git --version
+      register: git_version
+
+    - name: Show pip version
+      debug:
+        var: git_version.stdout
