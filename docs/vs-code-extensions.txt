@@ -1,0 +1,23 @@
+remote ssh
+python
+python debbuger
+retore terminals
+auto docstring
+better isort
+black formatter
+code speel checker
+docker
+copilot
+git lens
+grammarly
+indent-rainbow
+python type-hint
+sort lines
+trailling spaces
+yaml
+pylint
+pylance
+Python Docstring Generator (njpwerner.autodocstring)
+Visual Studio IntelliCode (visualstudioexptteam.vscodeintellicode)
+Prettier - Code Formatter (esbenp.prettier-vscode)
+better comments
