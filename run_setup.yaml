@@ -17,3 +17,6 @@
 
 - name: Install vim
   import_playbook: playbooks/unix/vim.yaml
+
+- name: Install zsh
+  import_playbook: playbooks/unix/zsh.yaml
