@@ -1,0 +1,23 @@
+---
+- name: Install pip 
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Update and install packages
+      apt:
+        update_cache: yes
+
+    - name: Install pip
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: Get pip version
+      command: pip3 --version
+      register: pip_version
+
+    - name: Show pip version
+      debug: 
+        var: pip_version.stdout
+
+
