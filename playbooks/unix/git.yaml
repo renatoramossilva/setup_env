@@ -1,0 +1,14 @@
+---
+- name: Install git
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Apdate packages
+      apt:
+        update_cache: yes
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+
