@@ -23,3 +23,6 @@ apt install ansible -y
 - zsh
 - Git
 - vim
+
+* pre-commit
+* poetry
