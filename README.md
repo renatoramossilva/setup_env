@@ -1,6 +1,10 @@
 # Install Ansible using python
 
-`python3 -m pip install --user ansible`
+```
+apt install python3 -y && \
+apt install pip && \
+apt install ansible -y
+```
 
 # Add ansible path in PATH envvar
 
@@ -8,7 +12,8 @@
 
 # Manually install
 
-- python
+- Python
+- 
 - VS Code
  - Restore terminal
  - 
