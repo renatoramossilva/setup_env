@@ -1,0 +1,17 @@
+---
+- name: Install and configure SSH Server on Ubuntu
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Update package list
+      apt:
+        update_cache: yes
+
+    - name: Install OpenSSH Server
+      apt:
+        name: openssh-server
+        state: present
+
+    - name: Ensure SSH service is running
+      raw: service ssh start
+

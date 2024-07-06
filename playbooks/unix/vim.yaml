@@ -1,0 +1,17 @@
+---
+- name: Install vim on Ubuntu
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Update package list
+      apt:
+        update_cache: yes
+
+    - name: Install vim
+      apt:
+        name: vim
+        state: present
+
+    - name: Check vim version
+      command: vim --version
+      register: vim_version
