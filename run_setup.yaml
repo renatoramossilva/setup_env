@@ -5,3 +5,7 @@
 
 - name: apt update/upgrade
   import_playbook: playbooks/unix/apt.yaml
+
+- name: Install git
+  import_playbook: playbooks/unix/git.yaml
+
