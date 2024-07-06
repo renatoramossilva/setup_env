@@ -11,3 +11,9 @@
 
 - name: Install pip
   import_playbook: playbooks/unix/pip.yaml
+
+- name: Install ssh
+  import_playbook: playbooks/unix/ssh.yaml
+
+- name: Install vim
+  import_playbook: playbooks/unix/vim.yaml
