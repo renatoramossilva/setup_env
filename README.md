@@ -26,6 +26,14 @@ apt install ansible -y
 
 * pre-commit
 * poetry
+* black
+* mypy
+* pylint
+* ruff
+* unimport
+* trailing-whitespace-fixer
+* end-of-file-fixer
+* check yaml/json
 
 # Open git action in a vscode tab
 git config --global core.editor "code --wait"
