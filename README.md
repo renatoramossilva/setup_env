@@ -26,3 +26,7 @@ apt install ansible -y
 
 * pre-commit
 * poetry
+
+# Open git action in a vscode tab
+git config --global core.editor "code --wait"
+
