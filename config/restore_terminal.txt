@@ -1,0 +1,151 @@
+#setting.json - vscode
+{
+    "python.formatting.provider": "black",
+    "yaml.format.singleQuote": true,
+    "window.zoomLevel": 1,
+    "workbench.editor.enablePreview": false,
+    "autoDocstring.logLevel": "Debug",
+    "autoDocstring.startOnNewLine": true,
+    "autoDocstring.docstringFormat": "numpy",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "trailing-spaces.trimOnSave": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "workbench.startupEditor": "none",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        },
+        "sh": {
+            "path": "/bin/sh"
+        }
+    },
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "restoreTerminals.terminals": [
+        {
+            "splitTerminals": [
+                {
+                    "name": "aosp",
+                    "commands": [
+                        "cd docker-aosp-build",
+                        "source ~/.bash_aliases"
+                    ]
+                }
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "drafts",
+                    "commands": [
+                        "cd drafts",
+                    ]
+                }
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "zuul-trusted",
+                    "commands": [
+                        "cd zuul-trusted",
+                        "source ~/.bash_aliases"
+                    ]
+                }
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "aws-bump",
+                    "commands": [
+                        "cd aws-auto-bump",
+                        "source ~/.bash_aliases"
+                    ]
+                }
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "manifest-ci",
+                    "commands": [
+                        "cd idcevo/system-manifest-ci",
+                        "source ~/.bash_aliases"
+                    ]
+                }
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "system-manifest",
+                    "commands": [
+                        "cd idcevo/system-manifest",
+                        "source ~/.bash_aliases"
+                    ]
+                }
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "apinext-workspace",
+                    "commands": [
+                        "cd ../apinext_workspace",
+                        "source ~/.bash_aliases"
+                    ]
+                }
+            ]
+        },
+
+    ],
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "[python]": {
+        "editor.formatOnSaveMode": "file",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.formatOnType": true,
+    },
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.fontSize": 12,
+    "python.testing.pytestArgs": [
+        "idcevo"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+}
+
