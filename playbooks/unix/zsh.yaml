@@ -1,0 +1,112 @@
+- hosts: localhost
+  vars:
+    ZSH_CUSTOM: "{{ ansible_env.HOME }}/.oh-my-zsh/custom"
+    ZSH_PLUGIN: "{{ ZSH_CUSTOM }}/plugins"
+  # https://medium.com/@satriajanaka09/setup-zsh-oh-my-zsh-powerlevel10k-on-ubuntu-20-04-c4a4052508fd
+  # https://bytexd.com/how-to-use-fzf-command-line-fuzzy-finder/
+  tasks:
+    - name: Install ZSH
+      shell: |
+        sudo apt install zsh -y
+
+    - name: Install ZSH
+      shell: |
+        zsh --version
+      register: zsh_version
+
+    - name: zsh_version
+      debug:
+        var: zsh_version.stdout
+
+    - name: Make zsh default shell
+      shell: |
+        sudo chsh -s $(which zsh)
+
+    - name: Make zsh default shell
+      shell: |
+        sudo apt install curl
+
+    - name: Install OhmyZSH
+      shell: |
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    - name: Check if zshrc exists
+      stat:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+      register: zshrc_file
+
+    - name: zshrc_file 
+      debug:
+        var: zshrc_file.stat.exists
+
+    - name: Apply agnoster theme
+        replace:
+          path: "{{ ansible_env.HOME }}/.zshrc"
+          regexp: "^ZSH_THEME=.*$"
+          replace: ZSH_THEME="agnoster"
+
+    - name: Start a new terminal
+      shell: |
+        exec zsh -l
+
+    - name: Add fonts-powerline
+      shell: |
+        sudo apt-get install fonts-powerline
+
+    - name: Check powerlevel10k is installed
+      stat:
+        path: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/powerlevel10k"
+      register: powerlevel10k_folder
+
+    - name: Clone powerlevel10k
+      shell: |
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+      when: not powerlevel10k_folder.stat.exists
+
+    - name: Apply powerlevel10k
+        replace:
+          path: "{{ ansible_env.HOME }}/.zshrc"
+          regexp: "^ZSH_THEME=.*$"
+          replace: ZSH_THEME="powerlevel10k/powerlevel10k
+
+    - name: Start a new terminal
+      shell: |
+        exec zsh -l
+
+    # https://medium.com/@satriajanaka09/setup-zsh-oh-my-zsh-powerlevel10k-on-ubuntu-20-04-c4a4052508fd
+    - name: Check if zsh-syntax-highlighting exists
+      stat:
+        path: "{{ ZSH_PLUGIN }}/zsh-syntax-highlighting"
+      register: highlighting_folder
+
+    - name: Git clone zsh-syntax-highlighting
+      shell: |
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git {{ ZSH_PLUGIN }}/zsh-syntax-highlighting
+      when: not highlighting_folder.stat.exists
+
+    - name: Check if autosuggestions exists
+      stat:
+        path: "{{ ZSH_PLUGIN }}/zsh-autosuggestions"
+      register: autosuggestions_folder
+
+    - name: Git clone zsh-autosuggestions
+      shell: |
+        git clone https://github.com/zsh-users/zsh-autosuggestions.git {{ ZSH_PLUGIN }}/zsh-autosuggestions 
+      when: not autosuggestions_folder.stat.exists
+
+    - name: Add autosuggestions/highlighting as plugin
+      replace:
+        path: '{{ ansible_env.HOME }}/ctw/drafts/playbooks/a.txt'
+        regexp: '^plugins=\(git(.*)$'
+        replace: 'plugins=(git zsh-autosuggestions zsh-syntax-highlighting\1'
+
+    - name: Check if fzf exists
+      stat:
+        path: "{{ ZSH_PLUGIN }}/fzf"
+      register: fzf_folder
+
+    - name: Git clone fzf-tab
+      shell: |
+        git clone --depth 1 https://github.com/junegunn/fzf.git {{ ZSH_PLUGIN }}/fzf && ./{{ ZSH_PLUGIN }}/fzf/install
+      when: not fzf_folder.stat.exists
+
