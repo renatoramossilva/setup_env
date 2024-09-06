@@ -13,16 +13,20 @@ apt install ansible -y
 # Manually install
 
 - Python
-- 
-- VS Code
- - Restore terminal
- - 
+- VS Code (extensions)
 
 # Automatically install
 
 - zsh
+- OhmyZSH
+- powerlevel10k
+- zsh-syntax-highlighting
+- autosuggestions
+- fzf-tab
 - Git
 - vim
+- ssh
+- pip
 
 * pre-commit
 * poetry
