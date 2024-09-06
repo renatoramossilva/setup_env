@@ -1,11 +1,13 @@
 ## APINEXT ##
 #alias apinext='apinext.sh'
 alias apinext='~/ctw/docker-aosp-build/scripts/apinext.sh'
+alias appinext='~/ctw/docker-android-build/appinext/appinext.sh'
 
 ## GIT ##
 alias gs='git status'
 alias gb='git branch'
 alias gc='git checkout'
+#alias gcommit= 'source ~/venv-precommit/bin/activate && git commit'
 #alias gforce='git push -f origin'
 alias gpl='git pull'
 alias gph='git push'
@@ -13,9 +15,17 @@ alias grc='git rebase --continue'
 alias gforce='branch_name=$(git symbolic-ref -q HEAD); echo "Forcing push to: ${branch_name##refs/heads/}"; git push -f origin ${branch_name##refs/heads/}'
 alias gamend='git commit --amend'
 alias grebase='git fetch; git rebase origin/master'
-alias rblack='qa run black'
-alias rlint='qa run pylint'
-alias rtest='qa run pytest'
+alias gri='git_rebase'
+git_rebase() {
+    git rebase -i HEAD~$1
+}
+alias gr='git_reset_head'
+git_reset_head() {
+    git reset HEAD~$1
+}
+alias rblack='qa black .'
+alias rlint='qa pylint .'
+alias rtest='qa pytest .'
 #alias rqa='RED="\033[0;31m";GREEN="\033[0;32m"; NC="\033[0m"; rlint; if [[ $? == 0 ]]; then echo -e "pylint: ${GREEN}PASSED${NC}"; rblack; if [[ $? == 0 ]]; then echo -e "black: ${GREEN}PASSED${NC}";rtest; if [[ $? == 0 ]]; then echo -e "QA TOOLS: ${GREEN}PASSED${NC}"; else echo -e "pytest ${RED}FAILED${NC}"; fi; else echo -e "black ${RED}FAILED"; fi; else echo -e "pylint ${RED}FAILED${NC}"; fi'
 alias runlint='rlint; if [[ $? == 0 ]]; then echo -e "pylint: ${GREEN}PASSED${NC}"'
 alias runblack='rblack; if [[ $? == 0 ]]; then echo -e "black: ${GREEN}PASSED${NC}"'
@@ -26,22 +36,37 @@ alias qadev='docker run --rm -v "$PWD":/src qa-tools:dev'
 alias gadd='git add . && gamend && gforce'
 alias rmbranches='git branch | grep -v grep -v "master" | xargs git branch -D'
 
-## QA-TOOLS ##
-alias qa='docker run --rm -v "$PWD":/src apinext.artifactory.cc.bmwgroup.net/apinext-docker/qa-tools'
-
 ## VENV ##
-alias venv='source /tmp/venv/bin/activate'
 
-## GENERAL ##
-alias sizedir='for dirs in $(ls --color=never -l | grep "^d" | awk "{print $9}"); do du -hs $dirs;done'
-alias dirsize='sudo du -d 1 -h'
-#alias sizedir='for dirs in $(ls --color=never -l | grep "^d" | awk '{print $9}'); do du -hs $dirs;done'
-
-## CDH
-alias cdh='cdh --qnumber qxz11nz --pintype yk'
-
-## PIP
+## PIP ##
 alias pip='pip3'
 
-## QQ Approval
+## QQ Approval ##
 alias qqapproval='~/ctw/./tech_user_rev.sh'
+
+## LINUX ##
+alias netrc='code ~/.netrc'
+alias aliases='code ~/.bash_aliases'
+# echo 'cd() { command cd "$@" && ls; }' >> ~/.zshrc
+# echo 'cd() { command cd "$@" && ls; }' >> ~/.bashrc
+alias sizedir='for dirs in $(ls --color=never -l | grep "^d" | awk "{print $9}"); do du -hs $dirs;done'
+alias dirsize='sudo du -d 1 -h'
+# alias sizedir='for dirs in $(ls --color=never -l | grep "^d" | awk '{print $9}'); do du -hs $dirs;done'
+alias python='python3'
+
+rgrep() {
+    local pattern="$1"
+    local dirs_to_exclude=()
+    shift
+    local arg
+    for arg in "$@"; do
+        if [[ -d "$arg" ]]; then
+            dirs_to_exclude+=("--exclude-dir=$arg")
+        fi
+    done
+    grep -rn "${dirs_to_exclude[@]}" -- "$pattern" .
+}
+
+alias awslogin='bmwaws login --profile default'
+#sshaws
+ssh -o ServerAliveInterval=60 -o ProxyCommand="nc -x aws.zuul-node-proxy.cc.bmwgroup.net:31081 %h %p" zuul@10.30.106.80
