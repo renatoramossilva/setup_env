@@ -1,0 +1,7 @@
+docker
+tree
+tmux
+pipx
+wget
+systemctl
+docker
