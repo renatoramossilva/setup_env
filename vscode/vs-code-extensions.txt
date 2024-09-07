@@ -21,3 +21,4 @@ Python Docstring Generator (njpwerner.autodocstring)
 Visual Studio IntelliCode (visualstudioexptteam.vscodeintellicode)
 Prettier - Code Formatter (esbenp.prettier-vscode)
 better comments
+Python Sphinx Highlighter
